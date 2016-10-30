@@ -1,0 +1,18 @@
+body {
+	background-color: #DADADA;
+}
+body > .grid {
+	height: 100%;
+}
+
+.form label {
+	text-align: left;
+}
+
+.column {
+	max-width: 600px;
+}
+
+#nextQuestionButton {
+	margin-top: 1em;
+}

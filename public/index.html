@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Assignment4</title>
+        <meta charset="UTF-8">        
+        <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
+    <body>
+        <!-- This form is base of semantic ui login form. http://semantic-ui.com/examples/login.html -->
+        <div class="ui middle aligned center aligned grid">
+            <div class="ui segment column">
+                <h2 class="ui header">Trivia Questions</h2>
+                <div class="ui top attached tabular menu">
+                    <a class="item active" data-tab="question">Question</a>
+                    <a class="item" data-tab="create">Create</a>
+                    <a class="item" data-tab="score">Score</a>
+                </div>
+                <div class="ui bottom attached tab segment active" data-tab="question">
+                    <form class="ui huge form answer">
+                        <div class="field">
+                            <label>Question</label>
+                            <div id="question"></div>
+                        </div>
+                        <div class="field">
+                            <label>Answer</label>
+                            <input type="text" name="answer" id="answer" placeholder="Answer">
+                        </div>
+                        <button class="ui primary button" type="submit">Submit</button>
+                    </form>
+                    <button class="ui button" type="submit" id="nextQuestionButton">Next Question</button>
+                </div>
+                <div class="ui bottom attached tab segment" data-tab="create">
+                    <form class="ui huge form question">
+                        <div class="field">
+                            <label>Question</label>
+                            <input type="text" name="question" id="createQuestion" placeholder="Question">
+                        </div>
+                        <div class="field">
+                            <label>Answer</label>
+                            <input type="text" name="answer" id="createAnswer" placeholder="Answer">
+                        </div>
+                        <button class="ui primary button" type="submit">Submit</button>
+                    </form>
+                </div>
+                <div class="ui bottom attached tab segment" data-tab="score">
+                    <h3 class="ui header" id="right">Right: <span></span> </h3>
+                    <h3 class="ui header" id="wrong">Wrong: <span></span> </h3>
+                </div>
+                <div class="ui segment answer">
+                    <h3 class="ui header">Answer: <span></span> </h3>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+        <script src="semantic/dist/semantic.min.js"></script>   
+        <script src="javascript/home.js"></script>
+    </body>
+</html>
