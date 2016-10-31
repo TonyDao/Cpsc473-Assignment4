@@ -8,18 +8,18 @@ var main = function() {
 
     //get random question
     var getQuestion = function() {
-        var jsonObj;
         $.get('/question', function(data) {
-            jsonObj = JSON.parse(data);
-            $('#question').val(jsonObj.question);
-            answerId = jsonObj.answerId;
+            if (data) {
+                $('#question').html(data.question);
+                answerId = data.answerId;
+            } else {
+                console.log('No question');
+            }            
         });
     };
 
-    getQuestion();
-
     //get next question
-    $('#nextQuestionButton').on('click', function() {
+    $('#getQuestionButton').on('click', function() {
         getQuestion();
     });
 
@@ -36,8 +36,9 @@ var main = function() {
                 ]
             }
         }, 
-        onSuccess: function(event){
+        onSuccess: function(){
             var answer = $('#answer').val();
+            var result;
 
             var jsonData = JSON.stringify({answer: answer, answerId: answerId});
 
@@ -46,8 +47,9 @@ var main = function() {
                 method  : 'POST',
                 dataType: 'json',
                 data    : jsonData,
-                success : function(jsonResult) {
-                    $('.ui.segment.answer h3 span').val(jsonResult.correct);
+                success : function(data) {
+                    result = data.correct ? 'True':'False';
+                    $('.ui.segment.answer h3 span').html(result);
                 },
                 error   : function() {
                     console.log('Error post answer');
@@ -83,7 +85,7 @@ var main = function() {
                 ]
             }
         }, 
-        onSuccess: function(event){
+        onSuccess: function(){
             var question = $('#createQuestion').val(),
                 answer = $('#createAnswer').val();
 
@@ -94,8 +96,8 @@ var main = function() {
                 method  : 'POST',
                 dataType: 'json',
                 data    : jsonData,
-                success : function(jsonResult) {
-                    console.log(jsonResult);
+                success : function(data) {
+                    $('.ui.segment.answer h3 span').html(data.result);
                 },
                 error   : function() {
                     console.log('Error post answer');
@@ -111,12 +113,10 @@ var main = function() {
 
     //score tab pressed
     $('.ui.top.tabular.menu a:nth-child(3)').on('click',function() {
-        var jsonObj;
         $.get('/score', function(data) {
             if (data) {
-                jsonObj = JSON.parse(data);
-                $('#right span').val(jsonObj.right);
-                $('#wrong span').val(jsonObj.wrong);
+                $('#right span').html(data.right);
+                $('#wrong span').html(data.wrong);
             } else {
                 console.log('Error: no data');
             }
