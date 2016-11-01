@@ -1,10 +1,14 @@
 # Cpsc473-Assignment4
 ####How to execute program:
-Install node_modules:
+1) Install node_modules:
 ```sh
 npm install
 ```
-Run server:
+2) open a new terminal and connect over ssh and run redis and mongodb
+```sh
+foreman start
+```
+3) Open another ssh terminal and run server:
 ```sh
 node server.js
 ```
